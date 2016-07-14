@@ -1,1 +1,6 @@
-当人工
+---
+layout: post
+title:  "当人工智能具有七情六欲!"
+date:   2016-07-14 12:25:57 +0800
+categories: jekyll update
+---
