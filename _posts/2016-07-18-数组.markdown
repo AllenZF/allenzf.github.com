@@ -1,0 +1,44 @@
+一. 数组
+1. Typedef 定义数组类型：代码如下（vs2013）（不能实现数组传递）
+【v1.0】typedef unsigned char ElemType[6];
+int Return(ElemType **p){
+ElemType a = { 'q', 'm', 'e', 'u', 'p', 'y' };
+*p = &a;
+return 1;
+}
+main(){
+ElemType *e;
+Return(&e);
+}
+用Typedef 定义的数组类型来定义指针
+ElemType *p;等价于typedef unsigned char (*p)[6];
+参考谭浩强的书上指向数组的指针的知识。“p”为指向数组的指针，可以理解为二维数组。”p+1”为指向下一行，但是不取该行。“*p”便是对二维数组取行的操作，是行的首地址。“*p+1”是在行的基础上偏移一列，是元素的地址。“**p”先取该行地址，再取首地址的元素，输出为0号元素。“*(*p+i)”取该行第i号元素。
+	在Return()函数中，形参定义为ElemType *p时，对指针赋值时为 “p=a;” 如果用 ”*p=a;” 是无法办到的。因为 ”*p”是一维数组，也是首地址，就像 “a” 一样（数组变量名不能赋值），所以会报错“*p”不能作为左值（当然这里可以调用函数memcpy()来代替赋值语句）。对于 “p=a;” 该语句是不能将数组 “a” 一次性传出去的。因为改变的是子函数的形参。 
+
+
+
+【v2.0】
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef unsigned char ElemType[6];
+int Return(ElemType **p){
+	static ElemType a = { 'q', 'm', 'e', 'u', 'p' };
+	*p = &a;
+	return 1;
+}
+main(){
+	ElemType **e;
+	e = (ElemType **)malloc(sizeof(ElemType));
+	Return(e);
+	int i = 0;
+	for (; i < 6; ++i){
+		printf("e+%d:      %x\n", i, e + i);
+		printf("*e+%d:     %x\n", i, *e + i);
+		printf("**e+%d:    %x\n", i, (**e) + i);
+		printf("*(**e+%d): %c\n", i,*((**e) + i));
+		printf("\n");
+	}
+}
+	1.0版本看似没错，但得不到想要的输出（如果没有关键字 static）。把2.0版本中的for()拷贝到1.0版本中，你就会发现输出的根本不是想要是数据。“a” 在定义的时候定义的地址能够传给指针“e”,但是 “a”地址里面的内容完全无法保证，因为当子函数结束时，对应的内存会释放作他用。
+	第二点是for()中的第一个printf()。“*e+i”是跳行，地址每次加”i*sizeof(ElemType)”。按理来说 ”e+i“表示地址按页的大小来增加，但是输出结果显示每次加 “i*4”. 也就是说地址是按 “i” 的变量类型来加的（4个字节表示一个int型变量）。
