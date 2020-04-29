@@ -197,7 +197,7 @@ $$\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt$$
 
     $$x = a_0 + \frac {1^2}{a_1 +\frac {2^2}{a_3 + ...}}$$
     * 书写：`x = a_0 + \cfrac {1^2}{a_1 +\cfrac {2^2}{a_3 + ...}}`  
-    * 效果(推荐)：   
+    * 效果($\color{lime}{推荐}$)：   
 
     $$x = a_0 + \cfrac {1^2}{a_1 +\cfrac {2^2}{a_3 + ...}}$$
 
@@ -241,27 +241,21 @@ $$
 * 书写：
 ```
 $$
-\begin{equation}
-\begin{split}
-a&=b+c-d\\
-&\quad +e-f\\
-&=g+h\\
-&=i
-\end{split}
-\end{equation}
+\begin{aligned}
+y &= (a+b)^2\\
+  &= a^2 +b^2 +2ab\\
+  &= 0
+\end{aligned}
 $$
 ```
 * 效果：  
 
 $$
-\begin{equation}
-\begin{split}
-a&=b+c-d\\
-&\quad +e-f\\
-&=g+h\\
-&=i
-\end{split}
-\end{equation}
+\begin{aligned}
+y &= (a+b)^2\\
+  &= a^2 +b^2 +2ab\\
+  &= 0
+\end{aligned}
 $$
 
 ## 方程组 
@@ -280,8 +274,8 @@ $$
 或
 $$
 \begin{cases}
-a_1x+b_1y+c_1z=d_1 \\ 
-a_2x+b_2y+c_2z=d_2 \\ 
+a_1x+\ b_1y+\quad c_1z=d_1 \\ 
+a_2x+\;b_2y+\qquad c_2z=d_2 \\ 
 a_3x+b_3y+c_3z=d_3
 \end{cases}
 $$
