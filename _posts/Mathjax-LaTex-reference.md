@@ -99,7 +99,7 @@ $$\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt$$
 | \not | $\not$ |
 | \star|$\star$|
 | \ast |$\ast$|
-| oplus|$\oplus$|
+| \oplus|$\oplus$|
 | \bullet|$\bullet$|
 | \circ|$\circ$|
 
@@ -227,6 +227,8 @@ f(n)
 3n + 1, &if\ n\ is\ odd
 \end{cases}
 $$
+
+## 多行等式
 
 &emsp;&emsp;如果想分类之间的垂直间隔变大，可使用`\\[2ex]`代替`\\`来分隔不同的情况。（1ex:原始距离。3ex,4ex都可以）  
 
